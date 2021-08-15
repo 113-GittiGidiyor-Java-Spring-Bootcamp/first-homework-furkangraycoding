@@ -23,8 +23,8 @@ public class StudentController {
 
     }
 
-    public void deleteStudent(String name){
-        studentService.deleteFromDatabase(name);
+    public void deleteStudent(int id){
+        studentService.deleteFromDatabase(id);
 
     }
 
@@ -33,8 +33,8 @@ public class StudentController {
 
     }
 
-    public void updateStudent(String name,String address){
-        studentService.updateOnDatabase(name,address);
+    public void updateStudent(Student student,int id){
+        studentService.updateOnDatabase(student,id);
 
     }
 

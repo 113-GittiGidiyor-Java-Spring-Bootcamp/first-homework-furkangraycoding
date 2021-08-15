@@ -26,29 +26,44 @@ public class StudentService implements CrudRepository<Student> {
 
     @Override
     public void saveToDatabase(Student student) {
+      try{
         em.getTransaction().begin();
         em.persist(student);
         em.getTransaction().commit();
+      } catch (Exception e) {
+          em.getTransaction().rollback();
+      }
 
     }
 
     @Override
-    public void deleteFromDatabase(String name) {
+    public void deleteFromDatabase(int id) {
+        try{
         em.getTransaction().begin();
-        Student student= em.createQuery("from Student s where s.name =:name ",Student.class).setParameter("name",name).getSingleResult();
+        Student student= em.createQuery("from Student s where s.id =:id ",Student.class).setParameter("id",id).getSingleResult();
         em.remove(student);
         em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
 
     }
 
     @Override
-    public void updateOnDatabase(String name, String address) {
-        em.getTransaction().begin();
-        Student student= em.createQuery("from Student s where s.name =:name ",Student.class).setParameter("name",name).getSingleResult();
-        em.remove(student);
-        student.setAddress(address);
-        em.persist(student);
-        em.getTransaction().commit();
+    public void updateOnDatabase(Student student, int id) {
+        try{
+
+            em.getTransaction().begin();
+            Student student1= em.createQuery("from Student s where s.id =:id ",Student.class).setParameter("id",id).getSingleResult();
+            student1.setAddress(student.getAddress());
+            student1.setName(student.getName());
+            student1.setBirthDate(student.getBirthDate());
+            student1.setGender(student.getGender());
+            em.persist(student1);
+            em.getTransaction().commit();
+        } catch (Exception e) {
+            em.getTransaction().rollback();
+        }
 
     }
 }

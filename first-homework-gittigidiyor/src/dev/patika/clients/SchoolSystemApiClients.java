@@ -15,24 +15,38 @@ public class SchoolSystemApiClients {
         StudentController controller=new StudentController();
 
 
-        // saveTestData();
-
-
-        //Student student4 = new Student("Mehmet", LocalDate.of(2015, Month.SEPTEMBER,5),"address4","male");
-        //controller.saveStudent(student4);
-
-        //controller.updateStudent("Koray","address55");
-
-        // controller.deleteStudent("Levent");
-
-
-
-        List<Student> allStudentList = controller.findAllStudent();
-
-        for (Student student : allStudentList) {
+        saveTestData();
+        List<Student> AllStudentList = controller.findAllStudent();
+        for (Student student : AllStudentList) {
             System.out.println(student);
         }
+        System.out.println("---- First Edition Just Saving Data---------------");
 
+        Student student4 = new Student("Mehmet", LocalDate.of(2015, Month.SEPTEMBER,5),"address4","male");
+        controller.saveStudent(student4);
+
+        List<Student> AfterSaveAllStudentList = controller.findAllStudent();
+        for (Student student : AfterSaveAllStudentList) {
+            System.out.println(student);
+        }
+        System.out.println("---- Second Edition Add Data---------------");
+
+        Student student5 = new Student("Lorem", LocalDate.of(2019, Month.DECEMBER,23),"address414","female");
+        controller.updateStudent(student5,student4.getId());
+        List<Student> afterUpdateAllStudentList = controller.findAllStudent();
+
+        for (Student student : afterUpdateAllStudentList) {
+            System.out.println(student);
+        }
+        System.out.println("---- Third Edition Update Data---------------");
+
+        controller.deleteStudent(student4.getId());
+        List<Student> afterDeleteAllStudentList = controller.findAllStudent();
+
+        for (Student student : afterDeleteAllStudentList) {
+            System.out.println(student);
+        }
+        System.out.println("---- Fourth Edition Delete Data---------------");
 
     }
 
