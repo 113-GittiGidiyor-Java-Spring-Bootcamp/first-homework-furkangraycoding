@@ -1,4 +1,4 @@
-package dev.patika.homework.models;
+package dev.patika.models;
 
 import javax.persistence.*;
 import java.time.LocalDate;

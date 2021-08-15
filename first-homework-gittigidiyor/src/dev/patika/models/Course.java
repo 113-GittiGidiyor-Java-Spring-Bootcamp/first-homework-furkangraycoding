@@ -1,4 +1,4 @@
-package dev.patika.homework.models;
+package dev.patika.models;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -22,7 +22,7 @@ public class Course {
     public Course() {
     }
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     private Instructor instructor;
 
     @ManyToMany(mappedBy = "studentCourses")
