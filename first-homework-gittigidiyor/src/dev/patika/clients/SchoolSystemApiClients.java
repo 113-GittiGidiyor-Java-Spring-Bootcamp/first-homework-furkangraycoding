@@ -1,15 +1,39 @@
 package dev.patika.clients;
 
+import dev.patika.controller.StudentController;
 import dev.patika.models.*;
 import dev.patika.utils.EntityManagerUtils;
 
 import javax.persistence.EntityManager;
 import java.time.LocalDate;
 import java.time.Month;
+import java.util.List;
 
 public class SchoolSystemApiClients {
     public static void main(String[] args) {
-        saveTestData();
+
+        StudentController controller=new StudentController();
+
+
+        // saveTestData();
+
+
+        //Student student4 = new Student("Mehmet", LocalDate.of(2015, Month.SEPTEMBER,5),"address4","male");
+        //controller.saveStudent(student4);
+
+        //controller.updateStudent("Koray","address55");
+
+        // controller.deleteStudent("Levent");
+
+
+
+        List<Student> allStudentList = controller.findAllStudent();
+
+        for (Student student : allStudentList) {
+            System.out.println(student);
+        }
+
+
     }
 
     private static void saveTestData(){

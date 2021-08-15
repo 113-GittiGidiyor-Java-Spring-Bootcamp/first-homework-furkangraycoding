@@ -22,6 +22,7 @@ public class Course {
     public Course() {
     }
 
+    //Many to one
     @ManyToOne(cascade = CascadeType.ALL)
     private Instructor instructor;
 
